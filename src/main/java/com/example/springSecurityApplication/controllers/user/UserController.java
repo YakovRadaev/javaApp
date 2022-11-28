@@ -22,6 +22,7 @@ package com.example.springSecurityApplication.controllers.user;
 
 import com.example.springSecurityApplication.security.PersonDetails;
 import com.example.springSecurityApplication.services.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -34,6 +35,7 @@ public class UserController {
 
     private final ProductService productService;
 
+    @Autowired
     public UserController(ProductService productService) {
         this.productService = productService;
     }

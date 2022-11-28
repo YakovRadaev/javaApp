@@ -27,9 +27,9 @@ public class Product {
     @Min(value = 1, message = "Цена не может быть отрицательной или нулевой")
     private float price;
 
-    @Column(name = "warehouse", nullable = false)
+    @Column(name = "city", nullable = false)
     @NotEmpty(message = "Склад по нахождению товара не может быть пустым")
-    private String warehouse;
+    private String city;
 
     @Column(name = "seller", nullable = false,columnDefinition = "text")
     @NotEmpty(message = "Информация о продавце не может быть пустым")
@@ -83,12 +83,12 @@ public class Product {
         this.price = price;
     }
 
-    public String getWarehouse() {
-        return warehouse;
+    public String getCity() {
+        return city;
     }
 
-    public void setWarehouse(String warehouse) {
-        this.warehouse = warehouse;
+    public void setCity(String warehouse) {
+        this.city = warehouse;
     }
 
     public String getSeller() {
