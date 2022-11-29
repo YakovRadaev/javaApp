@@ -1,19 +1,4 @@
-//package com.example.springSecurityApplication.controllers.admin;
-//
-//import org.springframework.stereotype.Controller;
-//import org.springframework.web.bind.annotation.GetMapping;
-//
-//@Controller
-////@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
-//public class AdminController {
-////    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
-//    @GetMapping("/admin")
-//    public String admin(){
-//        return "admin/admin";
-//    }
-//}
 package com.example.springSecurityApplication.controllers.admin;
-
 import com.example.springSecurityApplication.models.Image;
 import com.example.springSecurityApplication.models.Product;
 import com.example.springSecurityApplication.services.ProductService;

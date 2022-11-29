@@ -7,7 +7,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class Config implements WebMvcConfigurer {
-    @Value("${upload.path}")
+    @Value("//global/share/upload")
     private String uploadPath;
 
     @Override
