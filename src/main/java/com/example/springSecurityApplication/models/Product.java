@@ -39,6 +39,9 @@ public class Product {
     private List<Image> imageList = new ArrayList<>();
     private LocalDateTime dateTime;
 
+    @ManyToOne(optional = false)
+    private Category category;
+
     // Будем заполнять дату и время при создании объекта класса
     @PrePersist
     private void init(){
