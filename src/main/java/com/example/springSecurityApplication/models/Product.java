@@ -110,6 +110,14 @@ public class Product {
         this.dateTime = dateTime;
     }
 
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
     public List<Image> getImageList() {
         return imageList;
     }

@@ -31,6 +31,13 @@
     <textarea th:field="*{seller}" placeholder="Продавец" id="seller"></textarea>
         <div style="color: red" th:if="${#fields.hasErrors('seller')}" th:errors="*{seller}"></div>
     <br>
+
+    <label for="category">Введите категорию товара: </label>
+    <select name="category" th:field="*{category}" id="category">
+        <div th:each="element : ${category}">
+            <option th:text="${element.getName()}" th:value="${element.getId()}"></option>
+        </div>
+    </select>
     <br>
     <p style="color: red">Вы можете добавить до 5 фотографий. Первая фотография не может быть пустой т.к она будет являться главной</p>
     <input type="file" name="file_one">
