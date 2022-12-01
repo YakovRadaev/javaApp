@@ -148,6 +148,7 @@ public class AdminController {
     @GetMapping("/product/edit/{id}")
     public String editProduct(Model model, @PathVariable("id") int id){
         model.addAttribute("product", productService.getProductId(id));
+        model.addAttribute("category", catalogRepository.findAll());
         return "product/editProduct";
     }
 

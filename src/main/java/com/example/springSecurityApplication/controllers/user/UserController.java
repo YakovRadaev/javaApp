@@ -41,7 +41,7 @@ public class UserController {
     }
 
     @GetMapping("/index")
-    public String index() {
+    public String index(Model model) {
 
         // Получаем объект аутентификации - > с помощью Spring SecurityContextHolder обращаемся к контексту и на нем вызываем метод аутентификации.
         // Из потока для текущего пользователя мы получаем объект, который был положен в сессию после аутентификации
@@ -52,20 +52,7 @@ public class UserController {
         {
             return "redirect:/admin";
         }
+        model.addAttribute("products", productService.getAllProduct());
         return "user/index";
     }
-
-    @GetMapping("/product")
-    public String getAllProduct(Model model) {
-        model.addAttribute("products", productService.getAllProduct());
-        return "/product/product";
-    }
-
-    @GetMapping("/product/info/{id}")
-    public String infoUser(@PathVariable("id") int id, Model model){
-        model.addAttribute("product", productService.getProductId(id));
-        return "product/infoProduct";
-    }
-
-
 }
