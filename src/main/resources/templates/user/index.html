@@ -1,61 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Главная страница</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}">
 </head>
 <body>
 <h3>Главная страница магазина</h3>
 <form method="post" th:action="@{/logout}">
     <input type="submit" value="Выйти из личного кабинета">
-<!--    <a href="/product">Список товаров</a>-->
+</form>
+<br>
+<form method="get" th:action="@{/cart}">
+    <input type="submit" value="Корзина">
 </form>
 
+<form method="get" th:action="@{/orders}">
+    <input type="submit" value="История заказов">
+</form>
+<br>
+<br>
 <form th:method="POST" th:action="@{/product/search}">
     <fieldset>
-    <legent>Выберите параметр для сортировки: </legent>
-    <br>
-        <label for="search">Поиск по наименованию: </label>
+        <legend>Выберите параметр для сортировка: </legend>
+        <br>
+        <label for="search">Поиск по наименованию</label>
         <input name="search" id="search">
-        <p>Цена, Руб.</p>
-        <label for="ot">От: </label>
+        <br>
+        <p>Цена, ₽</p>
+        <label for="ot">От</label>
         <input type="text" name="ot" id="ot">
-        <label for="do">До: </label>
+        <label for="do">До</label>
         <input type="text" name="do" id="do">
         <br>
-        <label for="ascending_price">Сортировать по возрастанию цены</label>
-        <input type="radio" id="ascending_price" name="price" value="sorted_by_ascending_price">
-        <label for="descending_price">Сортировать по убыванию цены</label>
-        <input type="radio" id="descending_price" name="price" value="sorted_by_descending_price">
-        <p>Категория товаров</p>
-        <label for="furniture">Мебель</label>
-        <input type="radio" id="furniture" name="contact" value="furniture">
-        <label for="appliances">Бытовая техника</label>
-        <input type="radio" id="appliances" name="contact" value="appliances">
-        <label for="clothes">Мебель</label>
-        <input type="radio" id="clothes" name="contact" value="clothes">
         <br>
-        <input type="submit" value="Найти">
+        <div>
+            <label for="ascending_price">Отсортировать по возрастанию цены</label>
+            <input type="radio" id="ascending_price" name="price" value="sorted_by_ascending_price">
+            <br>
+            <br>
+            <label for="descending_price">Отсортировать по убыванию цены</label>
+            <input type="radio" id="descending_price" name="price" value="sorted_by_descending_price">
+            <p>Категория товаров: </p>
+            <label for="furniture">Мебель</label>
+            <input type="radio" id="furniture" name="contact" value="furniture">
+            <label for="appliances">Бытовая техника</label>
+            <input type="radio" id="appliances" name="contact" value="appliances">
+            <label for="clothes">Одежда</label>
+            <input type="radio" id="clothes" name="contact" value="clothes">
+            <br>
+            <br>
+            <input type="submit" value="Найти">
+        </div>
     </fieldset>
     <br>
 </form>
-
 <h3>Доступные товары: </h3>
 <hr>
 <div th:each="product : ${products}">
-    <p th:text="'Наименование: ' + ${product.getTitle()}">
-<!--    <p th:text="'Описание: ' + ${product.getDescription()}">-->
-    <p th:text="'Цена: ' + ${product.getPrice()}"></p>
-<!--    <p th:text="'Склад: ' + ${product.getWarehouse()}"></p>-->
-<!--    <p th:text="'Продавец: ' + ${product.getSeller()}"></p>-->
-
     <img th:src="'/img/' + ${product.imageList[0].getFileName()}" width="300px">
     <br>
     <a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}"></a>
+    <p th:text="'Цена: ' + ${product.getPrice()}"></p>
+    <a th:href="@{/cart/add/{id}(id=${product.getId()})}">Добавить в корзину</a>
     <hr>
 </div>
-
-<script th:src="@{/js/script.js}" ></script>
 </body>
 </html>

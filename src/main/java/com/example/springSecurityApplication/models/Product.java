@@ -48,6 +48,13 @@ public class Product {
         dateTime = LocalDateTime.now();
     }
 
+    @ManyToMany()
+    @JoinTable(name = "product_cart", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "person_id"))
+    private List<Person> personList;
+
+    @OneToMany(mappedBy = "product")
+    private List<Order> orderList;
+
     // Метод по добавлению фотографий в лист к текущему продукту
     public void addImageToProduct(Image image){
         image.setProduct(this);
@@ -110,19 +117,19 @@ public class Product {
         this.dateTime = dateTime;
     }
 
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
     public List<Image> getImageList() {
         return imageList;
     }
 
     public void setImageList(List<Image> imageList) {
         this.imageList = imageList;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }
